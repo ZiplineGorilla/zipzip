@@ -11,5 +11,23 @@
 </div>
 <br>
 <div style="text-align: center">
-  <a href="https://google.com"><button><h1>Click here to exit this screen.</h1></button></a>
+<button onclick="exitFullscreenAndRedirect()"><h1>Click here to exit this screen.</h1></button>
 </div>
+<script>
+  function exitFullscreenAndRedirect() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().then(() => {
+        // Wait until fullscreen has exited, then redirect
+        window.location.href = "https://www.google.com";
+      }).catch((err) => {
+        console.error("Error exiting fullscreen:", err);
+        // Still redirect if there's a problem
+        window.location.href = "https://www.google.com";
+      });
+    } else {
+      // Not in fullscreen, just redirect
+      window.location.href = "https://www.google.com";
+    }
+  }
+</script>
+
